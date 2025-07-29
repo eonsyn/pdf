@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Question Booklet</title>
+<link rel="stylesheet" href="./style.css">
+    <!-- KaTeX for rendering LaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"/>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+ 
+  </head>
+  <body>
+    <h1>Physics – Motion in a Straight Line</h1>
+    <h3>Time: 1 Hour</h3>
+
+    <div id="question-container">
+      <div class="question">
+        <p><strong>Q1.</strong> What is the displacement of an object moving in a straight line with uniform velocity?</p>
+        <p class="option">(A) \( s = ut + \frac{1}{2}at^2 \)</p>
+        <p class="option">(B) \( s = vt - \frac{1}{2}at^2 \)</p>
+        <p class="option">(C) \( s = ut \)</p>
+        <p class="option">(D) \( s = \frac{v^2 - u^2}{2a} \)</p>
+      </div>
+
+      <div class="question">
+        <p><strong>Q2.</strong> If an object starts from rest, which formula determines its velocity after time \( t \)?</p>
+        <p class="option">(A) \( v = u + at \)</p>
+        <p class="option">(B) \( v = at \)</p>
+        <p class="option">(C) \( v = \frac{s}{t} \)</p>
+        <p class="option">(D) \( v = \frac{u + v}{2} \)</p>
+      </div>
+    </div>
+
+    <div class="footer">© Aryan EdTech – All Rights Reserved</div>
+
+    <script>
+      // Auto-render LaTeX math using KaTeX
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\(", right: "\\)", display: false}
+          ],
+          throwOnError: false
+        });
+      });
+    </script>
+  </body>
+</html>

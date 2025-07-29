@@ -1,0 +1,29 @@
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.option {
+    margin-left: 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.katex {
+    font-size: 1.1em;
+}
