@@ -99,7 +99,9 @@ app.post('/generate-pdf-from-html', async (req, res) => {
     res.status(500).send('Failed to generate PDF');
   }
 });
-
+app.get("/",async(req,res)=>{
+res.status(200).send("Hello World")
+})
 // Start server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
