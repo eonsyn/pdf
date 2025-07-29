@@ -1,7 +1,8 @@
 // puppeteer-server/server.js
 import express from 'express';
 import cors from 'cors';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
+
 import bodyParser from 'body-parser';
 import katex from 'katex'; 
 import path from 'path';
