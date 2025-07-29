@@ -20,9 +20,7 @@ const __dirname = path.dirname(__filename);
 
 // Static folder (optional)
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+ 
 
 // PDF Generation Endpoint
 app.post('/generate-pdf-from-html', async (req, res) => {
