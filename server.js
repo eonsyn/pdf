@@ -1,7 +1,7 @@
 // puppeteer-server/server.js
 import express from 'express';
 import cors from 'cors';
-import puppeteer from 'puppeteer-core'; // OR use 'puppeteer' if you want it to auto-download Chromium
+import puppeteer from 'puppeteer';
 import bodyParser from 'body-parser';
 import path from 'path';
 import fs from 'fs';
@@ -18,9 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Static folder (for index.html test if needed)
+// Static folder (optional)
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -29,21 +28,25 @@ app.get('/', (req, res) => {
 app.post('/generate-pdf-from-html', async (req, res) => {
   try {
     const { html } = req.body;
+    const isRender = process.env.RENDER === 'true';
 
     const browser = await puppeteer.launch({
       headless: 'new',
-      executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', // ⬅️ CHANGE THIS IF NEEDED
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      ...(isRender
+        ? {}
+        : {
+            executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+          }),
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();
 
-    // Build HTML wrapper
+    // Wrap HTML with basic styling
     const fullHTML = `
       <html>
         <head>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
           <style>
             @page {
@@ -82,8 +85,8 @@ app.post('/generate-pdf-from-html', async (req, res) => {
         top: '40px',
         bottom: '40px',
         left: '40px',
-        right: '40px'
-      }
+        right: '40px',
+      },
     });
 
     await browser.close();
@@ -97,8 +100,8 @@ app.post('/generate-pdf-from-html', async (req, res) => {
   }
 });
 
-// Start Server
-const PORT = 4000;
+// Start server
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
