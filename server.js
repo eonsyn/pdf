@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/generate-pdf', async (req, res) => {
+app.get('/generate-pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       headless: 'new',
